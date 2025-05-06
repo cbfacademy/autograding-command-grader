@@ -14,6 +14,20 @@ function btoa(str) {
 }
 
 function generateResult(status, testName, command, message, duration, maxScore) {
+  let score = status === 'pass' ? maxScore : 0;
+
+  // Look for a pattern like "X of Y ... passed"
+  const match = message.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i);
+
+  if (match) {
+    const passed = parseInt(match[1], 10);
+    const total = parseInt(match[2], 10);
+
+    if (status === 'pass' && total > 0) {
+      score = Math.round((passed / total) * maxScore);
+    }
+  }
+
   return {
     version: 1,
     status,
@@ -22,7 +36,7 @@ function generateResult(status, testName, command, message, duration, maxScore) 
       {
         name: testName,
         status,
-        score: status === 'pass' ? maxScore : 0,
+        score,
         message,
         test_code: command,
         filename: '',
