@@ -13,11 +13,11 @@ function btoa(str) {
   return Buffer.from(str).toString('base64')
 }
 
-function generateResult(status, testName, command, message, duration, maxScore) {
+function generateResult(status, testName, command, message = '', duration, maxScore) {
   let score = status === 'pass' ? maxScore : 0
 
   // Look for a pattern like "X of Y ... passed"
-  const match = message?.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i)
+  const match = message.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i)
 
   if (match) {
     const passed = parseInt(match[1], 10)
