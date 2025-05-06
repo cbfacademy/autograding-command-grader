@@ -15,7 +15,7 @@ function btoa(str) {
 
 function generateResult(status, testName, command, message = '', duration, maxScore) {
   let score = status === 'pass' ? maxScore : 0
-
+  console.log(`typeof message: ${typeof message}`)
   // Look for a pattern like "X of Y ... passed"
   const match = message.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i)
 
