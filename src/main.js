@@ -15,7 +15,7 @@ function btoa(str) {
 
 function generateResult(status, testName, command, message = '', duration, maxScore) {
   let score = status === 'pass' ? maxScore : 0
-  core.info(`typeof message: ${typeof message}`)
+
   if (typeof message === 'string') {
     // Look for a pattern like "X of Y ... passed"
     const match = message.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i)
@@ -63,7 +63,6 @@ function getErrorMessageAndStatus(error, command) {
 }
 
 function run() {
-  core.info('Starting run')
   const testName = core.getInput('test-name', {required: true})
   const setupCommand = core.getInput('setup-command')
   const command = core.getInput('command', {required: true})
@@ -79,11 +78,11 @@ function run() {
     if (setupCommand) {
       execSync(setupCommand, {timeout, env, stdio: 'inherit'})
     }
-    core.info('Executing command')
+
     startTime = new Date()
     output = execSync(command, {timeout, env, stdio: 'inherit'})?.toString()
     endTime = new Date()
-    core.info('Generating result')
+
     result = generateResult('pass', testName, command, output, endTime - startTime, maxScore)
   } catch (error) {
     endTime = new Date()
