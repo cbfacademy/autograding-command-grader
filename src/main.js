@@ -78,7 +78,7 @@ function run() {
     if (setupCommand) {
       execSync(setupCommand, {timeout, env, stdio: 'inherit'})
     }
-    const stdout = execSync('pwd')
+    const stdout = execSync('./.github/workflows/grade-junit.sh 42 7 0')
     core.info(`stdout: ${stdout}`)
     startTime = new Date()
     output = execSync(command, {timeout, env, stdio: 'inherit', encoding: 'utf-8'})
