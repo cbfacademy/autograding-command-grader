@@ -63,6 +63,7 @@ function getErrorMessageAndStatus(error, command) {
 }
 
 function run() {
+  core.info('Starting run')
   const testName = core.getInput('test-name', {required: true})
   const setupCommand = core.getInput('setup-command')
   const command = core.getInput('command', {required: true})
