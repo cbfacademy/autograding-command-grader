@@ -79,10 +79,11 @@ function run() {
       execSync(setupCommand, {timeout, env, stdio: 'inherit'})
     }
 
+    core.info('Executing command')
     startTime = new Date()
     output = execSync(command, {timeout, env, stdio: 'inherit'})?.toString()
     endTime = new Date()
-
+    core.info('Command executed')
     result = generateResult('pass', testName, command, output, endTime - startTime, maxScore)
   } catch (error) {
     endTime = new Date()
