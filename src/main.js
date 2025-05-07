@@ -13,9 +13,9 @@ function btoa(str) {
   return Buffer.from(str).toString('base64')
 }
 
-function generateResult(status, testName, command, message = '', duration, maxScore) {
+function generateResult(status, testName, command, message, duration, maxScore) {
   let score = status === 'pass' ? maxScore : 0
-
+  core.info(`typeof message: ${typeof message}`)
   if (typeof message === 'string') {
     // Look for a pattern like "X of Y ... passed"
     const match = message.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i)
