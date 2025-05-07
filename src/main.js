@@ -78,12 +78,14 @@ function run() {
     if (setupCommand) {
       execSync(setupCommand, {timeout, env, stdio: 'inherit'})
     }
+    core.info(`command: ${command}`)
+    core.info(`timeout: ${timeout}`)
+    core.info(`env: ${env}`)
     const stdout = execSync(command, {timeout, env})
     core.info(`stdout: ${stdout}`)
     startTime = new Date()
     output = execSync(command, {timeout, env, stdio: 'inherit'})
     endTime = new Date()
-    core.info(`command: ${command}`)
     core.info(`output: ${output}`)
     result = generateResult('pass', testName, command, output, endTime - startTime, maxScore)
   } catch (error) {
