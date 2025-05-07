@@ -80,7 +80,7 @@ function run() {
     }
 
     startTime = new Date()
-    output = execSync(command, {timeout, env})
+    output = execSync(command, {timeout, env})?.toString()
     endTime = new Date()
     result = generateResult('pass', testName, command, output, endTime - startTime, maxScore)
   } catch (error) {
