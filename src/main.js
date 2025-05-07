@@ -78,10 +78,10 @@ function run() {
     if (setupCommand) {
       execSync(setupCommand, {timeout, env, stdio: 'inherit'})
     }
-    const stdout = execSync(command)
+    const stdout = execSync(command, {timeout, env})
     core.info(`stdout: ${stdout}`)
     startTime = new Date()
-    output = execSync(command, {timeout, env, stdio: 'inherit', encoding: 'utf-8'})
+    output = execSync(command, {timeout, env, stdio: 'inherit'})
     endTime = new Date()
     core.info(`command: ${command}`)
     core.info(`output: ${output}`)
