@@ -78,7 +78,7 @@ function run() {
     if (setupCommand) {
       execSync(setupCommand, {timeout, env, stdio: 'inherit'})
     }
-    const stdout = execSync('echo Hello')
+    const stdout = execSync('pwd')
     core.info(`stdout: ${stdout}`)
     startTime = new Date()
     output = execSync(command, {timeout, env, stdio: 'inherit', encoding: 'utf-8'})
