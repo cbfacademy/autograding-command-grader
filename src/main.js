@@ -17,8 +17,8 @@ function generateResult(status, testName, command, message, duration, maxScore) 
   let score = status === 'pass' ? maxScore : 0
 
   if (typeof message === 'string') {
-    // Look for a pattern like "X of Y ... passed"
-    const match = message.match(/(\d+)\s+of\s+(\d+)\s+.*passed/i)
+    // Look for a pattern like "X / Y"
+    const match = message.match(/(\d+)\s?\/\s?(\d+)/)
 
     if (match) {
       const passed = parseInt(match[1], 10)
